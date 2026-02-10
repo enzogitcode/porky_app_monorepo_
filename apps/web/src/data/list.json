@@ -1,0 +1,17 @@
+[
+    {
+        "nro":1,
+        "pariciones":2,
+        "descripcion":"hola1"
+    },
+    {
+        "nro":2,
+        "pariciones":2,
+        "descripcion":"hola2"
+    },
+    {
+        "nro":3,
+        "pariciones":2,
+        "descripcion":"hola3"
+    }
+]

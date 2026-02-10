@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+#root {
+  display: grid;
+  min-height: 100dvh;
+  min-width: 100%;
+  grid-template-rows: auto 1fr;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+:root {
+  --cssrosadefault: #fda5d5;
+  --azulbtn: #2140f0;
+}
+
+@theme {
+  --color-rosadefault: var(--cssrosadefault);
+  --color-azulbtn: var(--azulbtn);
+  --breakpoint-customMobile: 400px;
+}
+@media only screen and (max-device-width: var(--breakpoint-customMobile)) {
+  header {
+    justify-content: center;
+    gap: 1rem;
+  }
+  nav {
+    justify-content: center;
+    align-items: center;
+  }
+}
+.linkNavBar {
+  @apply bg-rosadefault rounded-3xl p-2 outline-1 outline-cyan-400 outline-offset-2 hover:outline-2 hover:bg-pink-500
+}
+
+.detailsButton {
+  @apply bg-green-300 hover:bg-green-400 rounded p-2 
+}
+
+.pageButton {
+  @apply bg-gray-200 rounded disabled:opacity-50 shadow-2xs hover:shadow-2xl hover:shadow-zinc-500 hover:scale-105 hover:bg-gray-400
+}
+
+.updateButton {
+@apply p-2 bg-sky-400 text-black hover:text-white rounded disabled:opacity-50 shadow-2xs hover:bg-sky-700 hover:shadow-2xl hover:shadow-zinc-500 
+}
+
+
+.dangerButton {
+@apply bg-red-600 p-2 rounded hover:bg-red-700 text-white
+}
+
+.editButton {
+@apply bg-amber-300 rounded p-2 hover:bg-amber-500
+} 
+ 
+.showButton {
+  @apply bg-sky-500 hover:bg-sky-800 text-white p-2 rounded disabled:opacity-50 
+}
+.containerBg {
+  background: linear-gradient(
+  180deg,
+  #a9d8ff 0%,    /* Azul cielo claro */
+  #6bb8ff 35%,   /* Azul más marcado */
+  #3f9aff 55%,   /* Azul cielo profundo */
+  #3f9aff 55%,   /* Azul cielo profundo */
+  #3f9aff 55%,   /* Azul cielo profundo */
+  #6abc5a 60%,   /* Transición hacia verde */
+  #4f9d43 70%  /* Verde pasto suave */
+);
+
+}
+
+.form-base {
+  @apply flex flex-col gap-4 p-4 rounded-xl 
+         shadow-md border border-gray-300 bg-white 
+         max-w-xl mx-auto w-full;
+}
+
+.paricionFechas {
+  grid-area: paricionFechas;
+}
+.paricionDescripcion {
+  grid-area: paricionDescripcion;
+}
+.paricionDatos {
+  grid-area: paricionDatos
+}
+
+.paricionCard{
+  display: grid;
+  grid-template-areas: 
+  "paricionDatos paricionFechas"
+  "descripcion descripcion"
+  ;
+}
