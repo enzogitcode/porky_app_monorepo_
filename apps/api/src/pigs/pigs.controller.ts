@@ -101,11 +101,12 @@ export class PigsController {
   async addVacuna(
     @Param('id') pigId: string,
     @Param('vacunaId') vacunaId: string,
-    @Body() body: { fechaVacunacion: Date }
+    @Body() body: { fechaVacunacion: Date , dosis:string}
   ): Promise<Pig> {
     return this.pigsService.addVacuna(pigId, {
       vacuna: vacunaId,
       fechaVacunacion: body.fechaVacunacion,
+      dosis:body.dosis
     });
   }
   @Patch(':id/removevacuna/:vacunaId')

@@ -31,4 +31,7 @@ export class VacunasController {
   remove(@Param('id') id: string) {
     return this.vacunasService.remove(id);
   }
+
+/*   @Post(':id/imgs')
+ */  
 }

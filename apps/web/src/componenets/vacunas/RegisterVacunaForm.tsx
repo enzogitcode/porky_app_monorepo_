@@ -15,7 +15,6 @@ const RegisterVacunaForm: React.FC = () => {
     nombre: "",
     laboratorio: "",
     proveedor: "",
-    dosis: "",
     descripcion: "",
   });
 
@@ -89,18 +88,7 @@ const RegisterVacunaForm: React.FC = () => {
             setVacunaForm({ ...VacunaForm, descripcion: e.target.value })
           }
         />
-        <div>
-          <InputCustom
-            inputClassName="text-center"
-            className="text-center"
-            type="text"
-            label="Dosis"
-            value={VacunaForm.dosis ?? ""}
-            onChange={(e) =>
-              setVacunaForm({ ...VacunaForm, dosis: e.target.value })
-            }
-          />
-        </div>
+
 
         <ButtonCustom
           type="submit"

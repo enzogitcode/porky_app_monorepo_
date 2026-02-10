@@ -35,11 +35,12 @@ export interface VacunaAplicada {
   vacuna: string | {
     _id: string;
     nombre: string;
-    dosis: string;
     laboratorio: string;
     descripcion: string;
   };
   fechaVacunacion: string;
+  dosis?: string;
+
 }
 
 export interface Pig {

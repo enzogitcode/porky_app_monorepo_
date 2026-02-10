@@ -46,6 +46,9 @@ export class VacunaAplicada {
 
   @Prop({ type: Date, required: true })
   fechaVacunacion: Date;
+
+  @Prop({ required:true})
+  dosis:string
 }
 
 

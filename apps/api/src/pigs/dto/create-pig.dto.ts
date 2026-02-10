@@ -38,6 +38,9 @@ export class VacunaAplicadaDto {
   @Type(() => Date)
   @IsDate()
   fechaVacunacion: Date;
+
+  @IsString()
+  dosis:string
 }
 
 export class ServicioDto {
