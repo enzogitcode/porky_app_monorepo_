@@ -31,9 +31,10 @@ const VacunarConUnaVacuna = () => {
   const [pigsSeleccionados, setPigsSeleccionados] = useState<string[]>([]);
   const [usarFechaGeneral, setUsarFechaGeneral] = useState(true);
   const [fechaGeneral, setFechaGeneral] = useState("");
-  const [fechasPorCerda, setFechasPorCerda] = useState<Record<string, string>>(
-    {}
-  );
+  const [fechasPorCerda, setFechasPorCerda] = useState<Record<string, string>>({});
+  // NUEVO: Dosis
+  const [dosisNumero, setDosisNumero] = useState("");
+  const [dosisMedida, setDosisMedida] = useState("mg");
 
   // Seleccionar / deseleccionar cerda
   const togglePig = (pigId: string) => {
@@ -72,24 +73,30 @@ const VacunarConUnaVacuna = () => {
 
     if (!confirmar) return;
 
+    // Validar dosis
+    if (!dosisNumero || !dosisMedida) {
+      alert("Debe ingresar la dosis y la medida");
+      return;
+    }
+    const dosis = `${dosisNumero}${dosisMedida}`;
     try {
       await Promise.all(
         pigsSeleccionados.map((pigId) => {
           const fecha = usarFechaGeneral ? fechaGeneral : fechasPorCerda[pigId];
-
           return vacunarPig({
             pigId,
             vacunaId,
             fechaVacunacion: new Date(fecha).toISOString(),
+            dosis,
           }).unwrap();
         })
       );
-
       alert("Vacunación aplicada correctamente");
-
       setPigsSeleccionados([]);
       setFechaGeneral("");
       setFechasPorCerda({});
+      setDosisNumero("");
+      setDosisMedida("mg");
     } catch (error) {
       console.error(error);
       alert("Error al aplicar la vacuna");
@@ -126,6 +133,32 @@ const VacunarConUnaVacuna = () => {
       </h1>
 
       <div className="justify-center-safe items-center-safe p-3 space-y-6">
+        {/* Dosis */}
+        <div className="border p-4 rounded-lg space-y-2">
+          <label className="font-semibold">Dosis a aplicar</label>
+          <div className="flex gap-2 items-center">
+            <InputCustom
+              type="number"
+              label="Número"
+              value={dosisNumero}
+              onChange={e => setDosisNumero(e.target.value)}
+              min={0}
+              step={0.01}
+              style={{ width: 80 }}
+            />
+            <select
+              value={dosisMedida}
+              onChange={e => setDosisMedida(e.target.value)}
+              className="border rounded p-2"
+            >
+              <option value="mg">mg</option>
+              <option value="ml">ml</option>
+              <option value="g">g</option>
+              <option value="cc">cc</option>
+              <option value="dosis">dosis</option>
+            </select>
+          </div>
+        </div>
         {/* Fecha general */}
         <div className="border p-4 rounded-lg space-y-2">
           <label className="flex items-center gap-2 font-semibold">

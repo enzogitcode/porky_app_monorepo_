@@ -15,9 +15,6 @@ export class Vacuna {
   proveedor?: string;
 
   @Prop()
-  dosis?: string;
-
-  @Prop()
   descripcion?:string
 }
 

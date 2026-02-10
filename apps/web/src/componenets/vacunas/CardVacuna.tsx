@@ -68,9 +68,7 @@ const CardVacuna: React.FC<Vacuna> = (props) => {
             <p>
               <span className="font-medium">Proveedor:</span> {props.proveedor}
             </p>
-            <p>
-              <span className="font-medium">Dosis Aplicada:</span> {props.dosis}
-            </p>
+
           </div>
 
           {/* Fechas */}

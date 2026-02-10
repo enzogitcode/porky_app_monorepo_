@@ -27,6 +27,9 @@ const PorkVacunar = () => {
    * value: YYYY-MM-DD
    */
   const [fechas, setFechas] = useState<Record<string, string>>({});
+  // NUEVO: Dosis por vacuna
+  const [dosisNumero, setDosisNumero] = useState<Record<string, string>>({});
+  const [dosisMedida, setDosisMedida] = useState<Record<string, string>>({});
 
   if (isLoading || isFetching) return <p>Cargando vacunas...</p>;
   if (isError) return <p>Error al cargar las vacunas.</p>;
@@ -40,22 +43,28 @@ const PorkVacunar = () => {
 
   const handleVacunar = async (vacunaId: string) => {
     if (!id) return;
-
     const fechaVacunacion = fechas[vacunaId];
-
+    const numero = dosisNumero[vacunaId];
+    const medida = dosisMedida[vacunaId] || "mg";
     if (!fechaVacunacion) {
       alert("Seleccioná una fecha de vacunación");
       return;
     }
-
+    if (!numero) {
+      alert("Ingresá el número de dosis");
+      return;
+    }
+    const dosis = `${numero}${medida}`;
     try {
       await vacunarPig({
         pigId: id,
         vacunaId,
-        fechaVacunacion, // string YYYY-MM-DD
+        fechaVacunacion,
+        dosis,
       }).unwrap();
-
       alert("Cerdo vacunado con éxito");
+      setDosisNumero((prev) => ({ ...prev, [vacunaId]: "" }));
+      setDosisMedida((prev) => ({ ...prev, [vacunaId]: "mg" }));
     } catch (error) {
       alert("Error al vacunar el cerdo");
     }
@@ -79,7 +88,6 @@ const PorkVacunar = () => {
               <div>
                 <p>Laboratorio: {vacuna.laboratorio}</p>
                 <p>Proveedor: {vacuna.proveedor}</p>
-                <p>Dosis: {vacuna.dosis}</p>
               </div>
               <div>
                 <p>Descripción: {vacuna.descripcion}</p>
@@ -87,12 +95,38 @@ const PorkVacunar = () => {
             </div>
           </div>
 
-          <input
-            type="datetime-local"
-            value={fechas[vacuna._id] || ""}
-            onChange={(e) => handleFechaChange(vacuna._id, e.target.value)}
-            className="border p-1 rounded flex justify-center items-center"
-          />
+
+          <div className="flex flex-col gap-2">
+            <input
+              type="datetime-local"
+              value={fechas[vacuna._id] || ""}
+              onChange={(e) => handleFechaChange(vacuna._id, e.target.value)}
+              className="border p-1 rounded flex justify-center items-center"
+            />
+            {/* Dosis */}
+            <div className="flex gap-2 items-center">
+              <input
+                type="number"
+                min={0}
+                step={0.01}
+                placeholder="N° dosis"
+                value={dosisNumero[vacuna._id] || ""}
+                onChange={e => setDosisNumero(prev => ({ ...prev, [vacuna._id]: e.target.value }))}
+                className="border p-1 rounded w-20"
+              />
+              <select
+                value={dosisMedida[vacuna._id] || "mg"}
+                onChange={e => setDosisMedida(prev => ({ ...prev, [vacuna._id]: e.target.value }))}
+                className="border rounded p-1"
+              >
+                <option value="mg">mg</option>
+                <option value="ml">ml</option>
+                <option value="g">g</option>
+                <option value="cc">cc</option>
+                <option value="dosis">dosis</option>
+              </select>
+            </div>
+          </div>
 
           <div className="flex items-center justify-center">
             <button

@@ -8,6 +8,7 @@ const PorkVacunaAplicadaCard:React.FC<VacunaAplicada> = (props) => {
         <p>Vacuna Id: {props._id}</p>
         <p>Fecha de Vacunación: {new Date(props.fechaVacunacion).toLocaleDateString()}</p>
         <p>Hora de Vacunación: {new Date(props.fechaVacunacion).toLocaleTimeString()}</p>
+        <p><strong>Dosis aplicada:</strong> {props.dosis || 'No registrada'}</p>
     </div>
   )
 }

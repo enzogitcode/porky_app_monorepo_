@@ -120,18 +120,19 @@ export const pigsApi = createApi({
 
 
     //VACUNAS
-    vacunarPig: builder.mutation<Pig, { pigId: string; vacunaId: string, fechaVacunacion: string }>({
-      query: ({ pigId, vacunaId, fechaVacunacion }) => ({
-        url: `pigs/${pigId}/addvacuna/${vacunaId}`,
-        method: "PATCH",
-        body:
-          { vacuna: vacunaId, fechaVacunacion },
-      }),
-      invalidatesTags: (_result, _error, { pigId }) => [
-        { type: "Pigs", id: pigId }, // invalidar detalle individual
-        "Pigs", // invalidar listas generales
-      ],
-    }),
+    vacunarPig: builder.mutation<Pig, { pigId: string; vacunaId: string, fechaVacunacion: string, dosis: string }>(
+      {
+        query: ({ pigId, vacunaId, fechaVacunacion, dosis }) => ({
+          url: `pigs/${pigId}/addvacuna/${vacunaId}`,
+          method: "PATCH",
+          body: { vacuna: vacunaId, fechaVacunacion, dosis },
+        }),
+        invalidatesTags: (_result, _error, { pigId }) => [
+          { type: "Pigs", id: pigId },
+          "Pigs",
+        ],
+      }
+    ),
     eliminarVacunaDePig: builder.mutation<Pig, { pigId: string; vacunaId: string }>({
       query: ({ pigId, vacunaId }) => ({
         url: `pigs/${pigId}/removevacuna/${vacunaId}`,

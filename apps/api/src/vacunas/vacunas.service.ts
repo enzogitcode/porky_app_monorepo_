@@ -70,4 +70,14 @@ export class VacunasService {
       throw new Error
     }
   }
+  /* async addImg(id:string){
+    const vacuna = await this.vacunaModel.findById(id)
+    if (!vacuna) throw new NotFoundException(`No se encontraron vacunas con ese ${id}`)
+    try {
+      
+    } catch (error) {
+      
+    }
+  } */
+  
 }

@@ -19,7 +19,6 @@ const UpdaterVacunasForm = () => {
     nombre: "",
     laboratorio: "",
     proveedor: "",
-    dosis: "",
     descripcion: "",
   });
 
@@ -28,7 +27,6 @@ const UpdaterVacunasForm = () => {
     nombre: false,
     laboratorio: false,
     proveedor: false,
-    dosis: false,
     descripcion: false,
   });
 
@@ -39,7 +37,6 @@ const UpdaterVacunasForm = () => {
         nombre: vacuna.nombre,
         laboratorio: vacuna.laboratorio ?? "",
         proveedor: vacuna.proveedor ?? "",
-        dosis: vacuna.dosis ?? "",
         descripcion: vacuna.descripcion ?? "",
       });
     }
@@ -116,7 +113,7 @@ const UpdaterVacunasForm = () => {
         <p><strong>Nombre:</strong> {vacuna.nombre}</p>
         <p><strong>Laboratorio:</strong> {vacuna.laboratorio}</p>
         <p><strong>Proveedor:</strong> {vacuna.proveedor}</p>
-        <p><strong>Dosis:</strong> {vacuna.dosis}</p>
+
         <p><strong>Descripción:</strong> {vacuna.descripcion}</p>
       </Card>
 
@@ -126,7 +123,7 @@ const UpdaterVacunasForm = () => {
         {renderField("Nombre", "nombre", "text")}
         {renderField("Laboratorio", "laboratorio", "text")}
         {renderField("Proveedor", "proveedor", "text")}
-        {renderField("Dosis", "dosis", "text")}
+
         {renderField("Descripción", "descripcion", "textarea")}
       </Card>
     </Container>
