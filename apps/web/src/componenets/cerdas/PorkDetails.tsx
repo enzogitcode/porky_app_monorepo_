@@ -191,16 +191,19 @@ const PorkDetails = () => {
           </ButtonCustom>
           <div className=" flex flex-wrap bg- justify-evenly ">
             {showVacunas &&
-              pig.vacunasAplicadas.map((vacuna:VacunaAplicada) => (
-                <div key={vacuna._id} className="flex flex-col outline-2 outline-amber-400 m-2 p-2 rounded-2xl">
+              pig.vacunasAplicadas.map((vacuna: VacunaAplicada) => (
+                <div
+                  key={vacuna._id}
+                  className="flex flex-col outline-2 outline-amber-400 m-2 p-2 rounded-2xl"
+                >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <PorkVacunaAplicadaCard {...vacuna} />
-                    {vacuna?.vacuna && (
-                      <PorkVacunaAplicadaDetails vacunaId={vacuna?.vacuna?._id} />
+                    {typeof vacuna.vacuna !== "string" && (
+                      <PorkVacunaAplicadaDetails vacunaId={vacuna.vacuna._id} />
                     )}
                   </div>
                   <ButtonCustom
-                  className="dangerButton self-center-safe"
+                    className="dangerButton self-center-safe"
                     onClick={() => handleDeleteVacunaPork(vacuna._id)}
                   >
                     {eliminarVacunaLoading
@@ -238,22 +241,24 @@ const PorkDetails = () => {
         ))}
 
       <Container className="flex justify-center items-center gap-2.5 mb-2">
-        
-        {pig?.estadio !== 'fallecido' && <ButtonCustom
-          className="updateButton"
-          to={`/pigs/${pig._id}/pariciones`}
-        >
-          Agregar parición
-        </ButtonCustom>}
+        {pig?.estadio !== "fallecido" && (
+          <ButtonCustom
+            className="updateButton"
+            to={`/pigs/${pig._id}/pariciones`}
+          >
+            Agregar parición
+          </ButtonCustom>
+        )}
 
         <ButtonCustom className="editButton" to={`/pigs/update/${pig._id}`}>
           Editar cerdo
         </ButtonCustom>
 
-{pig.estadio !== "fallecido" && <ButtonCustom className="editButton" to={`/pigs/${pig._id}/vacunar`}>
-          Vacuna cerdo
-        </ButtonCustom>}
-        
+        {pig.estadio !== "fallecido" && (
+          <ButtonCustom className="editButton" to={`/pigs/${pig._id}/vacunar`}>
+            Vacuna cerdo
+          </ButtonCustom>
+        )}
 
         <ButtonCustom
           onClick={handleDelete}

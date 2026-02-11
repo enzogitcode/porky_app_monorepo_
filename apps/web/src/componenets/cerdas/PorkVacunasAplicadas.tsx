@@ -1,4 +1,4 @@
-interface VacunaAplicadaProps {
+/* interface VacunaAplicadaProps {
     id:string
     fechaAplicacion:Date
 }
@@ -10,4 +10,4 @@ const PorkVacunasAplicadas:React.FC<VacunaAplicadaProps> = (props) => {
   )
 }
 
-export default PorkVacunasAplicadas
+export default PorkVacunasAplicadas */
