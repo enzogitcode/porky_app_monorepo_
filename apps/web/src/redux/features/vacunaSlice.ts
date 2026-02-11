@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { Vacuna } from "../../types/vacunaType";
+import { apiUrl } from "../apiUrl";
 
 export const vacunasApi = createApi({
     reducerPath: "vacunasApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/vacunas" }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${apiUrl}/vacunas` }),
     tagTypes: ["Vacunas"],
     endpoints: (builder) => ({
         //lista de vacunas

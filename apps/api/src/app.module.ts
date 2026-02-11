@@ -28,7 +28,7 @@ import { UsersService } from './users/users.service';
         if (!uri) {
           throw new Error('MONGO_URL no está definido en tu archivo de entorno!');
         }
-        console.log(`Mongo uri: ${uri}`);
+        console.log("Mongo URI loaded:", !!uri);
         return { uri };
       },
     }),
@@ -43,7 +43,7 @@ import { UsersService } from './users/users.service';
   providers: [AppService],
 })
 export class AppModule implements OnModuleInit {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) { }
 
   async onModuleInit() {
     await this.usersService.createAdminIfNotExists();

@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { Pig, Paricion } from "../../types/pigTypes";
-import { baseURL } from "../baseURL";
+import { apiUrl } from "../apiUrl";
 
 export const pigsApi = createApi({
   reducerPath: "pigsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: `${baseURL}` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${apiUrl}` }),
   tagTypes: ["Pigs"],
 
   endpoints: (builder) => ({

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Container from "../../ui/Container";
 import ButtonCustom from "../../ui/ButtonCustom";
-import { baseURL } from "../../redux/baseURL";
+import { apiUrl } from "../../redux/apiUrl";
 
 interface User {
   _id: string;
@@ -18,7 +18,7 @@ const UsersList = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(`${baseURL}users`, {
+        const response = await fetch(`${apiUrl}/users`, {
           method: "GET",
           credentials: "include", // 🔑 cookie JWT
         });

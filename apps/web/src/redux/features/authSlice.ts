@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store/store';
-import { baseURL } from '../baseURL';
+import { apiUrl } from '../apiUrl';
 
 interface User {
   id: string;
@@ -31,7 +31,7 @@ export const loginUser = createAsyncThunk<User, LoginPayload, { rejectValue: str
   'auth/loginUser',
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await fetch(`${baseURL}auth/login`, {
+      const response = await fetch(`${apiUrl}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: payload.username, pin: payload.pin }),
@@ -68,7 +68,7 @@ export const resetUserPin = createAsyncThunk<
   'auth/resetUserPin',
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await fetch(`${baseURL}users/reset-pin/${payload.username}`, {
+      const response = await fetch(`${apiUrl}/users/reset-pin/${payload.username}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pin: payload.newPin }),
@@ -99,7 +99,7 @@ export const updateMyPin = createAsyncThunk<
   'auth/updateMyPin',
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await fetch(`${baseURL}users/me/pin`, {
+      const response = await fetch(`${apiUrl}users/me/pin`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pin: payload.pin }),
