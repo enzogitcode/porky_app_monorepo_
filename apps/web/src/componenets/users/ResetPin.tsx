@@ -22,11 +22,11 @@ const ResetPin = () => {
     setMessage("");
     setNewPin("");
 
-    try {
-      const result = await dispatch(resetUserPin({username})).unwrap();
-      setNewPin(result.tempPin);
-      setMessage(`PIN temporal generado: ${result.tempPin}`);
-    } catch (err: any) {
+try {
+  const result = await dispatch(resetUserPin({ username: username! })).unwrap();
+  setNewPin(result.tempPin);
+  setMessage(`PIN temporal generado: ${result.tempPin}`);
+} catch (err: any) {
       setMessage(err?.message || "Error al resetear PIN");
     } finally {
       setLoading(false);

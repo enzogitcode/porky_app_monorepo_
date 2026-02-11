@@ -158,6 +158,7 @@ export class PigsService {
           vacunasAplicadas: {
             vacuna: new Types.ObjectId(data.vacuna),
             fechaVacunacion: new Date(data.fechaVacunacion),
+              dosis: data.dosis,
           },
         },
       },

@@ -208,7 +208,7 @@ const PorkDetails = () => {
                   >
                     {eliminarVacunaLoading
                       ? "Eliminando vacuna..."
-                      : "Eliminar Vacuna"}
+                      : "Eliminar Vacuna"} 
                   </ButtonCustom>
                 </div>
               ))}
