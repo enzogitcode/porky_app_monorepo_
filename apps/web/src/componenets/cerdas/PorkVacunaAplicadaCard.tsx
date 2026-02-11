@@ -2,6 +2,8 @@ import React from 'react'
 import type { VacunaAplicada } from '../../types/pigTypes'
 
 const PorkVacunaAplicadaCard:React.FC<VacunaAplicada> = (props) => {
+  
+  console.log(props.dosis)
   return (
     <div>
         <h4>Fecha y hora de aplicación</h4>

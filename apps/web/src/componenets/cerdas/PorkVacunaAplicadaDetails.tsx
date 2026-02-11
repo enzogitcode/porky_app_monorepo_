@@ -33,7 +33,6 @@ const PorkVacunaAplicadaDetails = ({
             <p>Nombre de la Vacuna: {data?.nombre}</p>
             <p>Laboratorio: {data?.laboratorio}</p>
             <p>Proveedor: {data?.proveedor}</p>
-            <p>Dosis: {data?.dosis}</p>
           </div>
           <div>
             <p>Descripción: {data?.descripcion}</p>
