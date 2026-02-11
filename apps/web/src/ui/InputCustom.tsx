@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { type InputHTMLAttributes } from 'react';
 
 export type InputType = React.InputHTMLAttributes<HTMLInputElement>["type"];
 
 
-interface InputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   value: string | number;
   onChange: (e:React.ChangeEvent<HTMLInputElement>) => void; 
